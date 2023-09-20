@@ -13,6 +13,7 @@ const verifyUser = require("./utils/verifyToken");
 
 // express app
 const app = express();
+const server = require("http").createServer(app);
 
 app.use(
     cors({
@@ -26,9 +27,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // routes
-app.use("/items", ()=>{
-    res.json({id:70,title:"moka"})
-};
+app.use("/items",itemRoutes)
 app.use("/categories", categoryRoutes);
 app.use("/user", userRoutes);
 app.use("/basket", basketRoutes);
@@ -43,7 +42,7 @@ app.use((err, req, res, next) => {
 });
 
 //socket.io implementation
-const server = require("http").createServer(app);
+
 // const io = require("socket.io")(server, {
 //     cors: {
 //         origin: "http://localhost:3000",
