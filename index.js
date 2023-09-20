@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: ["https://seek-discomfort-client.vercel.app",'https://seek-discomfort-client-19pfh4j61-haykdag.vercel.app'],
+         origin: ["https://seek-discomfort-client.vercel.app",'https://seek-discomfort-client-19pfh4j61-haykdag.vercel.app','https://seek-discomfort-client-24f2ike27-haykdag.vercel.app'],
         credentials: true,
     })
 );
