@@ -44,6 +44,8 @@ const getItems = async (req, res) => {
     //         row.images = [];
     //     }
     // }
+    res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
     res.status(200).json({ result: {id:1,title:moka}, total:10 });
 };
 
