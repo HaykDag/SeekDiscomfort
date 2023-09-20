@@ -29,7 +29,7 @@ app.use(express.json());
 // routes
 app.use("/items",itemRoutes)
 app.use("/categories", categoryRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 app.use("/basket", basketRoutes);
 app.use("/images", ImagesRoutes);
 app.use("/orders", orderRoutes);
