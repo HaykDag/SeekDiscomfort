@@ -45,7 +45,7 @@ const getItems = async (req, res) => {
         }
     }
     
-    res.status(200).json({ result, total});
+   res.status(200).json({ result: rows, total });
 };
 
 //get a single item by id or title
