@@ -12,39 +12,39 @@ const { deleteImageFromCloudinary } = require("./imageController");
 
 //get all items
 const getItems = async (req, res) => {
-    const page = req.query?.page || 1;
-    const pageSize = req.query?.pageSize || 50;
-    const value = req.query?.value || "";
-    const searchTag = req.query.searchTag || ""
-    const sqlQuery = GET_ITEMS_WITH_CATEGORIES_AND_IMAGES(
-        page,
-        pageSize,
-        value,
-        searchTag
-    );
-    const query = GET_COUNT_OF_TOTAL_ITEMS(value, searchTag);
+    // const page = req.query?.page || 1;
+    // const pageSize = req.query?.pageSize || 50;
+    // const value = req.query?.value || "";
+    // const searchTag = req.query.searchTag || ""
+    // const sqlQuery = GET_ITEMS_WITH_CATEGORIES_AND_IMAGES(
+    //     page,
+    //     pageSize,
+    //     value,
+    //     searchTag
+    // );
+    // const query = GET_COUNT_OF_TOTAL_ITEMS(value, searchTag);
 
-    const [totalItems] = await pool.query(query);
+    // const [totalItems] = await pool.query(query);
 
-    const { total } = totalItems[0];
+    // const { total } = totalItems[0];
 
-    const [rows] = await pool.query(sqlQuery);
+    // const [rows] = await pool.query(sqlQuery);
 
-    for (let row of rows) {
-        if (row.tags) {
-            const tags = row.tags.split(",");
-            row.tags = tags;
-        } else {
-            row.tags = [];
-        }
-        if (row.images) {
-            const images = row.images.split(",");
-            row.images = images;
-        } else {
-            row.images = [];
-        }
-    }
-    res.status(200).json({ result: rows, total });
+    // for (let row of rows) {
+    //     if (row.tags) {
+    //         const tags = row.tags.split(",");
+    //         row.tags = tags;
+    //     } else {
+    //         row.tags = [];
+    //     }
+    //     if (row.images) {
+    //         const images = row.images.split(",");
+    //         row.images = images;
+    //     } else {
+    //         row.images = [];
+    //     }
+    // }
+    res.status(200).json({ result: {id:1,title:moka}, total:10 });
 };
 
 //get a single item by id or title
