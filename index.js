@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: ["*"],
+        origin: ["https://seek-discomfort-client.vercel.app"],
         credentials: true,
     })
 );
@@ -26,7 +26,7 @@ app.use(express.json());
 // routes
 app.use("/items", itemRoutes);
 app.use("/categories", categoryRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 app.use("/basket", basketRoutes);
 app.use("/images", ImagesRoutes);
 app.use("/orders", orderRoutes);
