@@ -71,7 +71,8 @@ const verifyUser = async (req, res, next) => {
     const username = req.username;
 
     const user = await getSingleUser({ username });
-
+	res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
     res.status(200).json(user);
 };
 
