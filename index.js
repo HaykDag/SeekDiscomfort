@@ -17,8 +17,7 @@ const server = require("http").createServer(app);
 
 app.use(
     cors({
-         //origin: ["https://seek-discomfort-client.vercel.app",],
-        origin:true,
+         origin: "https://seek-discomfort-client.vercel.app",
         credentials: true,
     })
 );
