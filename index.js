@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
     cors({
-         origin: ["https://seek-discomfort-client.vercel.app"],
+         origin: ["https://seek-discomfort-client.vercel.app/"],
         credentials: true,
     })
 );
@@ -26,7 +26,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 // routes
-app.use("/items", itemRoutes);
+app.use("/items", ()=>{
+    res.json({id:70,title:"moka"})
+};
 app.use("/categories", categoryRoutes);
 app.use("/user", userRoutes);
 app.use("/basket", basketRoutes);
