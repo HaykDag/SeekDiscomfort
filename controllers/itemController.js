@@ -12,7 +12,10 @@ const { deleteImageFromCloudinary } = require("./imageController");
 
 //get all items
 const getItems = async (req, res) => {
-    const { page, pageSize, value = "", searchTag } = req.query;
+    const page = req.query?.page || 1;
+    const pageSize = req.query?.pageSize || 50;
+    const value = req.query?.value || "";
+    const searchTag = req.query.searchTag || ""
     const sqlQuery = GET_ITEMS_WITH_CATEGORIES_AND_IMAGES(
         page,
         pageSize,
