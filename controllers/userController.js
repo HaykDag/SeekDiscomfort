@@ -41,6 +41,7 @@ const signup = async (req, res, next) => {
 const logoutUser = async (req, res, next) => {
     res.cookie("access_token", "", {
         httpOnly: true,
+	sameSite: "None",
         expires: new Date(0),
     });
     res.status(200).json({ message: "logged out" });
