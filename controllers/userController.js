@@ -45,6 +45,7 @@ const logoutUser = async (req, res, next) => {
 	sameSite: "None",
         expires: new Date(0),
     });
+	
     res.status(200).json({ message: "logged out" });
 };
 
