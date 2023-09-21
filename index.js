@@ -15,7 +15,7 @@ const server = require("http").createServer(app);
 
 app.use(
     cors({
-        origin: ["https://seek-discomfort-client.vercel.app"],
+         origin: ["https://seek-discomfort-client.vercel.app"],
         credentials: true,
     })
 );
@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // routes
-app.use("/items", itemRoutes);
+app.use("/items",itemRoutes)
 app.use("/categories", categoryRoutes);
 app.use("/users", userRoutes);
 app.use("/basket", basketRoutes);
@@ -41,50 +41,50 @@ app.use((err, req, res, next) => {
 
 //socket.io implementation
 
-// const io = require("socket.io")(server, {
-//     cors: {
-//         origin: "http://localhost:3000",
-//     },
-// });
-// let adminSocket;
-// io.on("connection", (socket) => {
-//     socket.on("register", () => {
-//         console.log(`Adminn is here ${socket.id}`);
-//         adminSocket = socket;
+const io = require("socket.io")(server, {
+    cors: {
+        origin: "https://seek-discomfort-client.vercel.app",
+    },
+});
+let adminSocket;
+io.on("connection", (socket) => {
+    socket.on("register", () => {
+        console.log(`Adminn is here ${socket.id}`);
+        adminSocket = socket;
 
-//         //incoming message from Admin
-//         adminSocket.on("reply", (data) => {
-//             //send admin's message to the user with this id
-//             io.to(data.id).emit("receive_message", data.message);
-//         });
-//     });
-//     //client sends message
-//     socket.on("send_message", (data) => {
-//         if (adminSocket) {
-//             //reSend clients message to admin
-//             adminSocket?.emit("receive_message", data);
-//         } else {
-//             setTimeout(() => {
-//                 io.to(data.id).emit(
-//                     "receive_message",
-//                     "Admin is not avlialable"
-//                 );
-//             }, 1000);
-//         }
-//     });
+        //incoming message from Admin
+        adminSocket.on("reply", (data) => {
+            //send admin's message to the user with this id
+            io.to(data.id).emit("receive_message", data.message);
+        });
+    });
+    //client sends message
+    socket.on("send_message", (data) => {
+        if (adminSocket) {
+            //reSend clients message to admin
+            adminSocket?.emit("receive_message", data);
+        } else {
+            setTimeout(() => {
+                io.to(data.id).emit(
+                    "receive_message",
+                    "Admin is not avlialable"
+                );
+            }, 1000);
+        }
+    });
 
-//     socket.on("disconnect", () => {
-//         if (socket.id === adminSocket?.id) {
-//             console.log("Admin is Disconnected: " + adminSocket.id);
-//             adminSocket = null;
-//         } else {
-//             if (adminSocket) {
-//                 adminSocket.emit("user_disconnected", socket.id);
-//             }
-//             console.log("User Disconnected", socket.id);
-//         }
-//     });
-// });
+    socket.on("disconnect", () => {
+        if (socket.id === adminSocket?.id) {
+            console.log("Admin is Disconnected: " + adminSocket.id);
+            adminSocket = null;
+        } else {
+            if (adminSocket) {
+                adminSocket.emit("user_disconnected", socket.id);
+            }
+            console.log("User Disconnected", socket.id);
+        }
+    });
+});
 
 server.listen(process.env.PORT, () => {
     console.log("listening to port " + process.env.PORT);
