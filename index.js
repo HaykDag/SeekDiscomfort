@@ -11,6 +11,7 @@ const cors = require("cors");
 
 // express app
 const app = express();
+const server = require("http").createServer(app);
 
 app.use(
     cors({
@@ -39,7 +40,7 @@ app.use((err, req, res, next) => {
 });
 
 //socket.io implementation
-const server = require("http").createServer(app);
+
 // const io = require("socket.io")(server, {
 //     cors: {
 //         origin: "http://localhost:3000",

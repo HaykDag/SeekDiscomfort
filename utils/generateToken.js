@@ -4,7 +4,7 @@ const generateToken = (res, username) =>{
     const token = jwt.sign({ username },process.env.SECRET,{
         expiresIn: '1d'
     })
-
+    res.setHeader('Access-Control-Allow-Origin',"https://seek-discomfort-client.vercel.app/")
     res.cookie('access_token',token,{
         httpOnly:true,
         // secure: process.env.NODE_ENV !== 'development',
