@@ -75,7 +75,7 @@ const verifyUser = async (req, res, next) => {
 
     const user = await getSingleUser({ username });
 	res.setHeader('Access-Control-Allow-Credentials', true)
-  	res.setHeader('Access-Control-Allow-Origin', 'https://seekdiscomfort-api-com.onrender.com')
+  	res.setHeader('Access-Control-Allow-Origin', 'https://seekdiscomfort.onrender.com')
     res.status(200).json(user);
 };
 
