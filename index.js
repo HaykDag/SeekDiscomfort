@@ -21,6 +21,7 @@ app.use(
 );
 
 // middleWares
+
 app.use(cookieParser());
 app.use(express.json());
 
