@@ -41,10 +41,11 @@ const signup = async (req, res, next) => {
 const logoutUser = async (req, res, next) => {
     res.cookie("access_token", "", {
         httpOnly: true,
-        sameSite: "None",
-        secure: true,
+	secure: true,
+	sameSite: "None",
         expires: new Date(0),
     });
+	
     res.status(200).json({ message: "logged out" });
 };
 
@@ -74,7 +75,7 @@ const verifyUser = async (req, res, next) => {
 
     const user = await getSingleUser({ username });
 	res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://seek-discomfort-client.vercel.app')
+  	res.setHeader('Access-Control-Allow-Origin',req.get("origin"))
     res.status(200).json(user);
 };
 
