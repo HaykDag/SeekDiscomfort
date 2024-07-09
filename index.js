@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "https://seek-discomfort-client.vercel.app",
+        origin: ["https://seekdiscomfort.onrender.com/","https://seekdiscomfort2.onrender.com/"],
     },
 });
 let adminSocket;
